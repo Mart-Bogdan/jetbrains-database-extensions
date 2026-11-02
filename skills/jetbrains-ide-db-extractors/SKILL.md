@@ -32,7 +32,7 @@ DataRow     { rowNumber(); first(); last(); data(): List<Object>; value(column):
 DataColumn  { columnNumber(), name() }
 ```
 
-`JSON-Groovy` also calls `row.hasValue(col)` before `row.value(col)`, and leaves the column out of that row when it returns false. Do the same in every extractor: a row does not necessarily hold a value for every column, and following the bundled extractor's check is safer than assuming it does.
+`JSON-Groovy` also calls `row.hasValue(col)` before `row.value(col)`, and leaves the column out of that row when it returns false. Do the same in every extractor: a row does not necessarily hold a value for every column, and following the bundled extractor's check is safer than assuming it does. `NEWLINE` is not a binding either: the bundled scripts define it themselves (`NEWLINE = System.getProperty("line.separator")`), so an extractor that uses it without that line fails.
 
 Patterns from the bundled JSON extractor that are worth reusing:
 
