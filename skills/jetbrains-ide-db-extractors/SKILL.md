@@ -14,7 +14,24 @@ Official documentation: [Data extractors | DataGrip](https://www.jetbrains.com/h
 - In the IDE: **Project** tool window → **Scratches and Consoles | Extensions | Database Tools and SQL | data | extractors**.
 - On disk: `<IDE config dir>\extensions\com.intellij.database\data\extractors`. For Rider 2026.2 on Windows: `%APPDATA%\JetBrains\Rider2026.2\extensions\com.intellij.database\data\extractors`. The config dir is per major version.
 - File name: `<Name>.<output extension>.<groovy|js>`, e.g. `TOON-Groovy.toon.groovy`. `<Name>` is what the extractor list shows. Every script in this folder becomes a list entry, so keep helper code inside the extractor file rather than next to it.
-- The folder also holds the bundled extractors (`JSON-Groovy.json.groovy`, `CSV-Groovy.csv.groovy`, `Markdown-Groovy.md.groovy`, …). Read the closest one before writing a new extractor: it is the most reliable reference for the API in the user's IDE version.
+
+## Start from a bundled extractor
+
+The plugin ships its own extractors and copies them into that same folder, so every user has them. In Rider 2026.2 they are:
+
+| File | Good starting point for |
+| --- | --- |
+| `JSON-Groovy.json.groovy` | nested or structured formats; handles JSON columns, `hasValue`, value types |
+| `XML-Groovy.xml.groovy` | markup with escaping; also uses `hasValue` |
+| `CSV-Groovy.csv.groovy`, `Pretty-Groovy.txt.groovy`, `Markdown-Groovy.md.groovy`, `HTML-Groovy.html.groovy` | row-per-line and table formats |
+| `SQL-Insert-Statements.sql.groovy`, `SQL-Insert-Multirow.sql.groovy` | code generation that uses `TABLE` and `DIALECT` |
+| `One-row.sql.groovy` | code generation that uses `DIALECT` |
+| `Python-DataFrame.py.groovy` | code in another language |
+| `HTML-JavaScript.html.js` | the only JavaScript example |
+
+For transposed grids (`TRANSPOSED` is true), `CSV-Groovy`, `HTML-Groovy`, `Pretty-Groovy` and `XML-Groovy` show the handling; the others only mention the binding in their header comment.
+
+Before writing a new extractor, list the folder and read the one closest to the target format. It is the most reliable reference for the API in the user's IDE version, more so than this skill or the online docs. If you can't read the folder (it lives in the user's IDE config, often outside the working directory), ask the user to grant access or paste the closest file, rather than writing from memory.
 
 ## The script API
 
