@@ -1,6 +1,6 @@
 ---
 name: jetbrains-ide-db-extractors
-description: Write, fix or debug data extractors for the Database Tools and SQL plugin of JetBrains IDEs (Rider, DataGrip, IntelliJ), the Groovy or JavaScript scripts that turn a result grid into text for copy or export (CSV, JSON, Markdown, SQL inserts, TOON, …). Use whenever the user wants a new copy/export format for query results, asks about the "Data Extractors" list or the `extensions/com.intellij.database/data/extractors` folder, wants a library from Maven in an extractor, or an extractor misbehaves, e.g. a `.js` extractor that outputs plain CSV or a Groovy one failing with classloader or Jackson errors. Even if they don't say "extractor".
+description: Write or debug JetBrains IDE data extractors (Database Tools plugin in Rider, DataGrip, IntelliJ), the Groovy/JS scripts that turn query results into copy/export formats. Use for a new export format, Maven libraries (@Grab) in an extractor, or one that misbehaves, e.g. a .js extractor outputting plain CSV.
 ---
 
 # JetBrains IDE data extractors
