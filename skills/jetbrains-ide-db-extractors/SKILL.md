@@ -92,6 +92,8 @@ There is no way to run an extractor from outside the IDE here, so testing needs 
 
 Rerun probes after an IDE update: the bundled library versions move with it.
 
+The extractor docs link to [DataGrip/dg-scripted-extensions-environment](https://github.com/DataGrip/dg-scripted-extensions-environment), a "pre-configured project for scripted extensions development". It does not run or test extractors: it is a Gradle build that downloads IntelliJ IDEA Ultimate 2022.1.1 with the Database Tools plugin, to give a human code completion and type checks while editing (Rider shows syntax highlighting for these scripts, but says code insight needs IntelliJ IDEA). An agent gains nothing from it: edit extractors as plain files, and test them through the IDE as described above. The project is a single commit from January 2023, pinned to that IDE version and the old `org.jetbrains.intellij` 1.x Gradle plugin.
+
 ## Keeping copies in sync
 
 The IDE runs the copy in its config folder. If the extractor is also kept in a repository, nothing syncs the two, so after editing one, copy it to the other and say which copy you changed.
