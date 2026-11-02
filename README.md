@@ -6,6 +6,7 @@ Custom scripts for the **Database Tools and SQL** plugin of JetBrains IDEs. The 
 | --- | --- |
 | [`data/extractors/TOON-Groovy.toon.groovy`](data/extractors/TOON-Groovy.toon.groovy) | Copies or exports result grids as [TOON](https://github.com/toon-format/toon) (Token-Oriented Object Notation), a compact format for LLM prompts. |
 | [`probes/`](probes) | Diagnostic extractors that report what the IDE's scripting environment offers. Not for everyday use. |
+| [`skills/jetbrains-ide-db-extractors/`](skills/jetbrains-ide-db-extractors/SKILL.md) | An agent skill (Claude Code `SKILL.md`) for writing and debugging data extractors, built from the findings below. To use it, copy the folder to `~/.claude/skills/`. |
 
 ## Installing
 
