@@ -36,6 +36,37 @@ Values:
 - `json` and `jsonb` columns are parsed, so nested data becomes nested TOON. A value that doesn't parse stays a string.
 - Anything else (dates, UUIDs, other database types) becomes the IDE's text for it. The TOON library would otherwise turn types it doesn't know into `null`.
 
+### Nested JSON
+
+A JSON column whose objects all have the same keys stays in the table, with its keys folded into the header:
+
+```sql
+select 1 as id, '{"size": 42, "color": "red"}'::jsonb as attrs
+union all
+select 2, '{"size": null, "color": "blue"}'::jsonb
+```
+
+```
+[2]{id,attrs{size,color}}:
+  1,42,red
+  2,null,blue
+```
+
+If a key is missing from some rows, the rows no longer have the same shape, and TOON falls back to a longer list of objects:
+
+```
+[2]:
+  - id: 1
+    attrs:
+      size: 42
+      color: red
+  - id: 2
+    attrs:
+      color: blue
+```
+
+To keep the table, give every row every key, using `null` for absent values; `jsonb_build_object` makes that easy. Note that PostgreSQL's `jsonb` stores keys sorted, shorter keys first, so `size` comes before `color` above. Use `json` to keep the order as written.
+
 ### Dependencies
 
 The encoder is [jtoon](https://github.com/toon-format/toon-java) 3.0.0 (MIT), downloaded from Maven Central with `@Grab` on first use and cached in `~/.groovy/grapes`. Later runs work offline.
